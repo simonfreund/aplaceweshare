@@ -29,22 +29,12 @@ body {
 }
 
 .enter {
-  position: static;
-  left: auto;
-  top: 66px;
-  right: 0%;
-  bottom: 0%;
-  display: block;
   margin: 0;
   padding: 20px;
-  background-color: #fff;
   text-align: center;
+  text-transform: uppercase;
 }
 
-.info-text {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #fff;
-  color: #000;
-  text-align: center;
+.enter a {
+  text-decoration: none;
 }

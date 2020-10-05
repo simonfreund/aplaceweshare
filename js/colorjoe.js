@@ -491,8 +491,6 @@ https://bebraw.github.com/colorjoe - 2020-01-27 */
 
 	// Use the all build with cmyk and everything
 
-
-
 	var colorjoe = function(cbs) {
 	    if (!all(isFunction, [cbs.init, cbs.xy, cbs.z])) {
 	        return console.warn("colorjoe: missing cb");
