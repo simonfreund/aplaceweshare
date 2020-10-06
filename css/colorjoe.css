@@ -175,7 +175,7 @@
 .colorPicker .oned,
 .colorPicker .oned .bg,
 .colorPicker .oned .pointer .shape {
-    width: 24px;
+    width: 28px;
 }
 
 .colorPicker .twod .bg {
@@ -219,7 +219,7 @@
 }
 .colorPicker .oned .pointer .shape {
     position: absolute;
-    margin-left: -2px;
+    margin-left: 0;
     margin-top: 0;
     height: 2px;
     border: 0 solid whitesmoke;
