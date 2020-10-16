@@ -10,6 +10,8 @@
 
     <link rel="stylesheet" href="css/colorjoe.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/canvas.css">
+
 
 </head>
 
@@ -19,33 +21,32 @@
         <div id="enter">enter</div>
     </div>
 
+    <div id="canvas">
+
+    </div>
+    
+    <div id="counter">0</div>
+    <div id="info" style="display: none;"></div>
+
     <script src='js/scale.fix.js'></script>
     <script src='js/colorjoe.js'></script>
     <script src='js/aplaceweshare.js'></script>
     <script src="js/firebase-app.js"></script>
     <script src="js/firebase-database.js"></script>
     <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyCvi-z2_2bIW4BOzrEFFdK31z6RGNM2cjk",
-            authDomain: "a-place-we-share.firebaseapp.com",
-            databaseURL: "https://a-place-we-share.firebaseio.com",
-            projectId: "a-place-we-share",
-            storageBucket: "a-place-we-share.appspot.com",
-            messagingSenderId: "839642040073",
-            appId: "1:839642040073:web:6cd43edd57047d2d7b35d8"
-        };
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
-        function addUserColor(userId,color) {
-            database.ref(userId).set({color: color});
-        }
+
         const enterButton = document.getElementById('enter')
-        enterButton.addEventListener('click',() => {
-            const canvasBackgroundColor = document.getElementById('color-canvas-select').style.backgroundColor
+        enterButton.addEventListener('click', async () => {
+            const canvasForeground = document.getElementById('color-canvas-select')
+            const canvasBackgroundColor = canvasForeground.style.backgroundColor
             const max = 100000
             const min = 1
             const randomId = Math.floor(Math.random() * (max - min) + min)
-            addUserColor(randomId,canvasBackgroundColor)
+            await addUserColor(randomId,canvasBackgroundColor)
+            await renderCanvas()
+            await canvasTransition(canvasForeground)
         })
     </script>
 </body>
