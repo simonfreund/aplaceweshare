@@ -28,13 +28,14 @@ const firebaseConfig = {
     appId: "1:839642040073:web:6cd43edd57047d2d7b35d8"
 };
 
-function renderCanvas(){
+function renderCanvas() {
     let colors = database.ref().once('value').then(function (snapshot) {
         var usersObject = snapshot.val()
         const canvasElement = document.getElementById('canvas')
         for (const color in usersObject) {
             if (usersObject.hasOwnProperty(color)) {
                 const element = usersObject[color]
+                console.log(element);
                 const userColor = element.color
                 const colorBox = document.createElement('div')
                 colorBox.style.backgroundColor = userColor
@@ -45,8 +46,10 @@ function renderCanvas(){
     })
 }
 
-function addUserColor(userId,color) {
-    database.ref(userId).set({color: color});
+function addUserColor(timestamp, userId, color) {
+    database.ref(timestamp).set({
+        color: color
+    });
 }
 
 function canvasTransition(foreground) {
