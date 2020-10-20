@@ -35,7 +35,6 @@ function renderCanvas() {
         for (const color in usersObject) {
             if (usersObject.hasOwnProperty(color)) {
                 const element = usersObject[color]
-                console.log(element);
                 const userColor = element.color
                 const colorBox = document.createElement('div')
                 colorBox.style.backgroundColor = userColor
@@ -43,6 +42,7 @@ function renderCanvas() {
                 canvasElement.appendChild(colorBox)
             }
         }
+        updateGrid()
     })
 }
 
@@ -54,4 +54,46 @@ function addUserColor(timestamp, userId, color) {
 
 function canvasTransition(foreground) {
     foreground.style.display = 'none'
+}
+
+function updateGrid() {
+    const colorBoxes = document.getElementsByClassName('color-box')
+    const colorBoxesCount = colorBoxes.length
+    const rootOfBoxes = Math.sqrt(colorBoxesCount)
+    const rootRouned = Math.round(rootOfBoxes)
+    const widthB = `calc(100% / ${rootRouned})`
+    const rootRounedUp = Math.ceil(rootOfBoxes)
+    const widthA = `calc(100% / ${rootRounedUp})`
+
+    console.log(rootRouned, rootRounedUp)
+    addStylesheetRules([
+        ['.color-box',
+            ['height', widthB],
+            ['width', widthA]
+        ]
+    ]);
+}
+
+function addStylesheetRules(rules) {
+    var styleEl = document.createElement('style');
+    document.head.appendChild(styleEl);
+
+    var styleSheet = styleEl.sheet;
+
+    for (var i = 0; i < rules.length; i++) {
+        var j = 1,
+            rule = rules[i],
+            selector = rule[0],
+            propStr = '';
+        if (Array.isArray(rule[1][0])) {
+            rule = rule[1];
+            j = 0;
+        }
+
+        for (var pl = rule.length; j < pl; j++) {
+            var prop = rule[j];
+            propStr += prop[0] + ': ' + prop[1] + (prop[2] ? ' !important' : '') + ';\n';
+        }
+        styleSheet.insertRule(selector + '{' + propStr + '}', styleSheet.cssRules.length);
+    }
 }
