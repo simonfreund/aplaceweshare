@@ -29,22 +29,36 @@ const firebaseConfig = {
 };
 
 function renderCanvas() {
-    let colors = database.ref().once('value').then(function (snapshot) {
-        var usersObject = snapshot.val()
+    database.ref().on('child_added', function (snapshot) {
+        const usersObject = snapshot.val()
         const canvasElement = document.getElementById('canvas')
-        for (const color in usersObject) {
-            if (usersObject.hasOwnProperty(color)) {
-                const element = usersObject[color]
-                const userColor = element.color
-                const colorBox = document.createElement('div')
-                colorBox.style.backgroundColor = userColor
-                colorBox.classList.add('color-box')
-                canvasElement.appendChild(colorBox)
-            }
-        }
+        const userColor = usersObject.color
+        const colorBox = document.createElement('div')
+        colorBox.style.backgroundColor = userColor
+        colorBox.classList.add('color-box')
+        canvasElement.appendChild(colorBox)
         updateGrid()
     })
 }
+
+// function renderCanvas() {
+//     database.ref().once('value').then(function (snapshot) {
+//         var usersObject = snapshot.val()
+//         const canvasElement = document.getElementById('canvas')
+//         for (const color in usersObject) {
+//             if (usersObject.hasOwnProperty(color)) {
+//                 const element = usersObject[color]
+//                 const userColor = element.color
+//                 const colorBox = document.createElement('div')
+//                 colorBox.style.backgroundColor = userColor
+//                 colorBox.classList.add('color-box')
+//                 canvasElement.appendChild(colorBox)
+//             }
+//         }
+//         updateGrid()
+//         updateCanvas()
+//     })
+// }
 
 function addUserColor(timestamp, userId, color) {
     database.ref(timestamp).set({
@@ -61,15 +75,14 @@ function updateGrid() {
     const colorBoxesCount = colorBoxes.length
     const rootOfBoxes = Math.sqrt(colorBoxesCount)
     const rootRouned = Math.round(rootOfBoxes)
-    const widthB = `calc(100% / ${rootRouned})`
+    const widthB = 100 / rootRouned
     const rootRounedUp = Math.ceil(rootOfBoxes)
-    const widthA = `calc(100% / ${rootRounedUp})`
+    const widthA = 100 / rootRounedUp
 
-    console.log(rootRouned, rootRounedUp)
     addStylesheetRules([
         ['.color-box',
-            ['height', widthB],
-            ['width', widthA]
+            ['height', widthB + '%'],
+            ['width', widthA + '%']
         ]
     ]);
 }
