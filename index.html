@@ -43,7 +43,7 @@
             const randomNumber = Math.floor(Math.random() * (max - min) + min)
             const timestampNow = Date.now() + randomNumber
             const randomId = timestampNow + '-' + randomNumber
-            await addUserColor(randomId, randomNumber, canvasBackgroundColor)
+            await addUserColor(randomId, canvasBackgroundColor)
             await canvasTransition(canvasForeground)
         })
     </script>
