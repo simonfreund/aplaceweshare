@@ -41,28 +41,11 @@ function renderCanvas() {
     })
 }
 
-// function renderCanvas() {
-//     database.ref().once('value').then(function (snapshot) {
-//         var usersObject = snapshot.val()
-//         const canvasElement = document.getElementById('canvas')
-//         for (const color in usersObject) {
-//             if (usersObject.hasOwnProperty(color)) {
-//                 const element = usersObject[color]
-//                 const userColor = element.color
-//                 const colorBox = document.createElement('div')
-//                 colorBox.style.backgroundColor = userColor
-//                 colorBox.classList.add('color-box')
-//                 canvasElement.appendChild(colorBox)
-//             }
-//         }
-//         updateGrid()
-//         updateCanvas()
-//     })
-// }
-
 function addUserColor(timestamp, userId, color) {
     database.ref(timestamp).set({
         color: color
+    }).then(async () => {
+        renderCanvas()
     });
 }
 
