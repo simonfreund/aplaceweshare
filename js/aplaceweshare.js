@@ -28,7 +28,7 @@ const firebaseConfig = {
     appId: "1:839642040073:web:6cd43edd57047d2d7b35d8"
 };
 
-function renderCanvas() {
+function renderCanvas(id) {
     database.ref().on('child_added', function (snapshot) {
         const canvasElement = document.getElementById('canvas')
         const userColor = snapshot.val().color
@@ -46,13 +46,19 @@ function renderCanvas() {
         elementToRemove.remove()
         updateGrid()
     })
+
+    database.ref(id).onDisconnect().remove(function (err) {
+        if (err) {
+            console.error('could not establish onDisconnect event', err);
+        }
+    });
 }
 
 function addUserColor(id, color) {
     database.ref(id).set({
         color: color
     }).then(async () => {
-        renderCanvas()
+        renderCanvas(id)
     });
 }
 
