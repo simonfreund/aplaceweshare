@@ -38,11 +38,12 @@
         enterButton.addEventListener('click', async () => {
             const canvasForeground = document.getElementById('color-canvas-select')
             const canvasBackgroundColor = canvasForeground.style.backgroundColor
-            const max = 100000
+            const max = 9
             const min = 1
-            const randomId = Math.floor(Math.random() * (max - min) + min)
-            const timestampNow = Date.now()
-            await addUserColor(timestampNow, randomId, canvasBackgroundColor)
+            const randomNumber = Math.floor(Math.random() * (max - min) + min)
+            const timestampNow = Date.now() + randomNumber
+            const randomId = timestampNow + '-' + randomNumber
+            await addUserColor(randomId, randomNumber, canvasBackgroundColor)
             await canvasTransition(canvasForeground)
         })
     </script>

@@ -31,6 +31,7 @@ const firebaseConfig = {
 function renderCanvas() {
     database.ref().on('child_added', function (snapshot) {
         const usersObject = snapshot.val()
+        console.log(snapshot.key);
         const canvasElement = document.getElementById('canvas')
         const userColor = usersObject.color
         const colorBox = document.createElement('div')
@@ -39,13 +40,25 @@ function renderCanvas() {
         canvasElement.appendChild(colorBox)
         updateGrid()
     })
+
+    database.ref().on('child_removed', function (snapshot) {
+        // const usersObject = snapshot.ref
+        // const canvasElement = document.getElementById('canvas')
+        // const userColor = usersObject.color
+        // console.log(usersObject);
+        // const colorBox = document.createElement('div')
+        // colorBox.style.backgroundColor = userColor
+        // colorBox.classList.add('color-box')
+        // canvasElement.appendChild(colorBox)
+        // updateGrid()
+    })
 }
 
 function addUserColor(timestamp, userId, color) {
     database.ref(timestamp).set({
         color: color
     }).then(async () => {
-        renderCanvas()
+        renderCanvas(timestamp)
     });
 }
 
