@@ -11,9 +11,8 @@
 </head>
 
 <body>
-
     <div id="grid"></div>
-    
+
     <div class="wrapper" id="color-canvas-select">
         <div id="colorPicker"></div>
         <div id="enter">enter</div>
@@ -21,8 +20,14 @@
 
     <div id="canvas"></div>
 
-    <div id="counter" style="display: none;">0</div>
-    <div id="info" style="display: none;"></div>
+    <div id="counter" onclick="openInfo()">0</div>
+    <div id="back" style="display: none;" onclick="closeInfo()">back to canvans</div>
+    <div id="info" style="display: none;">
+        <a href="https://aplaceweshare.com" target="_blank" rel="noopener">aplaceweshare.com</a> is an online
+        installation by <a href="https://simonfreund.com" target="_blank" rel="noopener">Simon Freund</a>. Code by
+        Marcello Curto <a href="https://roark.at/about/marcello-curto/" target="_blank" rel="noopener">Marcello
+            Curto</a>
+    </div>
 
     <script src='js/color.js'></script>
     <script src='js/aplaceweshare.js'></script>

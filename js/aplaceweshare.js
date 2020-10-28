@@ -34,6 +34,10 @@ function renderCanvas(id, canvas) {
     }
 }
 
+function updateCounter(count) {
+    document.getElementById('counter').innerText = count
+}
+
 function addUserColor(id, color) {
     database.ref(id).set({
         color: color
@@ -54,6 +58,8 @@ function updateGrid() {
     const widthB = 100 / rootRouned
     const rootRounedUp = Math.ceil(rootOfBoxes)
     const widthA = 100 / rootRounedUp
+
+    updateCounter(colorBoxesCount)
 
     addStylesheetRules([
         ['.color-box',
@@ -85,4 +91,16 @@ function addStylesheetRules(rules) {
         }
         styleSheet.insertRule(selector + '{' + propStr + '}', styleSheet.cssRules.length);
     }
+}
+
+function openInfo() { 
+    document.getElementById('info').style.display = 'block'
+    document.getElementById('counter').style.display = 'none'
+    document.getElementById('back').style.display = 'block'
+}
+
+function closeInfo() { 
+    document.getElementById('info').style.display = 'none' 
+    document.getElementById('counter').style.display = 'block'
+    document.getElementById('back').style.display = 'none'
 }

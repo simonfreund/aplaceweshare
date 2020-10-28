@@ -17,6 +17,20 @@ body {
   -webkit-font-smoothing: antialiased;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
+  background: linear-gradient(-90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(-90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    linear-gradient(transparent 3px, #f2f2f2 3px, #f2f2f2 78px, transparent 78px),
+    linear-gradient(-90deg, #aaa 1px, transparent 1px),
+    linear-gradient(-90deg, transparent 3px, #f2f2f2 3px, #f2f2f2 78px, transparent 78px),
+    linear-gradient(#aaa 1px, transparent 1px), #f2f2f2;
+  background-size: 4px 4px, 4px 4px, 80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px;
+}
+
+a {
+  color: blue;
+  text-decoration: none;
 }
 
 #color-canvas-select {
@@ -58,20 +72,30 @@ body {
 
 #counter {
   position: fixed;
+  bottom: 20px;
+  left: 20px;
+  color: blue;
+  cursor: pointer;
+  z-index:91;
+}
+
+#back {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  color: blue;
+  cursor: pointer;
+  z-index:101;
 }
 
 #info {
   position: fixed;
-}
-
-body {
-  background: linear-gradient(-90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-    linear-gradient(-90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-    linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-    linear-gradient(transparent 3px, #f2f2f2 3px, #f2f2f2 78px, transparent 78px),
-    linear-gradient(-90deg, #aaa 1px, transparent 1px),
-    linear-gradient(-90deg, transparent 3px, #f2f2f2 3px, #f2f2f2 78px, transparent 78px),
-    linear-gradient(#aaa 1px, transparent 1px), #f2f2f2;
-  background-size: 4px 4px, 4px 4px, 80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px, 80px 80px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  background: #fffffffa;
+  z-index: 99;
+  padding: 20px;
 }
