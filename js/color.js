@@ -1,3 +1,23 @@
+fixScale = function(doc) {
+
+var addEvent = 'addEventListener',
+    type = 'gesturestart',
+    qsa = 'querySelectorAll',
+    scales = [1, 1],
+    meta = qsa in doc ? doc[qsa]('meta[name=viewport]') : [];
+
+    function fix() {
+        meta.content = 'width=device-width,minimum-scale=' + scales[0] + ',maximum-scale=' + scales[1];
+        doc.removeEventListener(type, fix, true);
+    }
+
+    if ((meta = meta[meta.length - 1]) && addEvent in doc) {
+        fix();
+        scales = [.25, 1.6];
+        doc[addEvent](type, fix, true);
+    }
+};
+fixScale(document);
 /*! colorjoe - v4.1.1 - Juho Vepsalainen <bebraw@gmail.com> - MIT
 https://bebraw.github.com/colorjoe - 2020-01-27 */
 (function (global, factory) {
@@ -822,4 +842,23 @@ https://bebraw.github.com/colorjoe - 2020-01-27 */
 	return colorjoe_1;
 
 })));
-//# sourceMappingURL=colorjoe.js.map
+
+
+main();
+function main() {
+    let canvas = document.getElementById('color-canvas-select')
+
+    colorjoe.registerExtra('text', function (p, joe, o) {
+        e(p, o.text ? o.text : 'text');
+    });
+
+    function e(parent, text) {
+        var elem = document.createElement('div');
+        elem.innerHTML = text;
+        parent.appendChild(elem);
+    }
+
+    colorjoe.rgb('colorPicker').on('change', function (c) {
+        canvas.style.backgroundColor = c.css();
+    }).update();
+}

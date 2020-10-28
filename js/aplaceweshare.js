@@ -1,23 +1,3 @@
-fixScale(document);
-main();
-function main() {
-    let canvas = document.getElementById('color-canvas-select')
-
-    colorjoe.registerExtra('text', function (p, joe, o) {
-        e(p, o.text ? o.text : 'text');
-    });
-
-    function e(parent, text) {
-        var elem = document.createElement('div');
-        elem.innerHTML = text;
-        parent.appendChild(elem);
-    }
-
-    colorjoe.rgb('rgbPicker').on('change', function (c) {
-        canvas.style.backgroundColor = c.css();
-    }).update();
-}
-
 const firebaseConfig = {
     apiKey: "AIzaSyCvi-z2_2bIW4BOzrEFFdK31z6RGNM2cjk",
     authDomain: "a-place-we-share.firebaseapp.com",
@@ -28,7 +8,7 @@ const firebaseConfig = {
     appId: "1:839642040073:web:6cd43edd57047d2d7b35d8"
 };
 
-function renderCanvas(id) {
+function renderCanvas(id, canvas) {
     database.ref().on('child_added', function (snapshot) {
         const canvasElement = document.getElementById('canvas')
         const userColor = snapshot.val().color
@@ -47,18 +27,18 @@ function renderCanvas(id) {
         updateGrid()
     })
 
-    database.ref(id).onDisconnect().remove(function (err) {
-        if (err) {
-            console.error('could not establish onDisconnect event', err);
-        }
-    });
+    if (canvas === false) {
+        database.ref(id).onDisconnect().remove(function (err) {
+            if (err) { console.error('could not establish onDisconnect event', err) }
+        })
+    }
 }
 
 function addUserColor(id, color) {
     database.ref(id).set({
         color: color
     }).then(async () => {
-        renderCanvas(id)
+        renderCanvas(id, false)
     });
 }
 
