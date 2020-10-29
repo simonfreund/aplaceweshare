@@ -71,12 +71,8 @@ a {
 }
 
 #inform {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
   color: blue;
   cursor: pointer;
-  z-index:91;
 }
 
 #back {
