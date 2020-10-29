@@ -89,12 +89,8 @@ function addStylesheetRules(rules) {
 
 function openInfo() { 
     document.getElementById('info').style.display = 'block'
-    document.getElementById('counter').style.display = 'none'
-    document.getElementById('back').style.display = 'block'
 }
 
 function closeInfo() { 
     document.getElementById('info').style.display = 'none' 
-    document.getElementById('counter').style.display = 'block'
-    document.getElementById('back').style.display = 'none'
 }
