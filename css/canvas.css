@@ -61,6 +61,14 @@ a {
   user-select: none;
 }
 
+#inform {
+  color: blue;
+  cursor: pointer;
+  text-transform: uppercase;
+  user-select: none;
+  text-decoration: none;
+}
+
 #home {
   color: blue;
   cursor: pointer;

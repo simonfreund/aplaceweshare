@@ -7,6 +7,8 @@ const firebaseConfig = {
     messagingSenderId: "839642040073",
     appId: "1:839642040073:web:6cd43edd57047d2d7b35d8"
 };
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
 
 function renderCanvas(id, canvas) {
     database.ref().on('child_added', function (snapshot) {
@@ -87,10 +89,34 @@ function addStylesheetRules(rules) {
     }
 }
 
-function openInfo() { 
+function openInfo() {
     document.getElementById('info').style.display = 'block'
 }
 
-function closeInfo() { 
-    document.getElementById('info').style.display = 'none' 
+function closeInfo() {
+    document.getElementById('info').style.display = 'none'
+}
+
+async function enterCanvas() {
+    const canvasForeground = document.getElementById('color-canvas-select')
+    const canvasBackgroundColor = canvasForeground.style.backgroundColor
+    const max = 9
+    const min = 1
+    const randomNumber = Math.floor(Math.random() * (max - min) + min)
+    const timestampNow = Date.now() + randomNumber
+    const randomId = timestampNow + '-' + randomNumber
+    await addUserColor(randomId, canvasBackgroundColor)
+    await canvasTransition(canvasForeground)
+}
+
+document.getElementById('enter').addEventListener('click', async () => {
+    await enterCanvas()
+})
+
+document.addEventListener('keydown', enterToEnter)
+async function enterToEnter(e) {
+    if (e.key === 'Enter') {
+        document.removeEventListener('keydown', enterToEnter)
+        await enterCanvas()
+    }
 }

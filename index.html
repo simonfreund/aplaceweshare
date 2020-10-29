@@ -35,25 +35,9 @@
             Curto</a>
     </div>
 
+    <script src="js/firebase.js"></script>
     <script src='js/color.js'></script>
     <script src='js/aplaceweshare.js'></script>
-    <script src="js/firebase.js"></script>
-    <script>
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
-        const enterButton = document.getElementById('enter')
-        enterButton.addEventListener('click', async () => {
-            const canvasForeground = document.getElementById('color-canvas-select')
-            const canvasBackgroundColor = canvasForeground.style.backgroundColor
-            const max = 9
-            const min = 1
-            const randomNumber = Math.floor(Math.random() * (max - min) + min)
-            const timestampNow = Date.now() + randomNumber
-            const randomId = timestampNow + '-' + randomNumber
-            await addUserColor(randomId, canvasBackgroundColor)
-            await canvasTransition(canvasForeground)
-        })
-    </script>
 </body>
 
 </html>
