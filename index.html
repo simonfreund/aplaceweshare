@@ -15,15 +15,17 @@
 
     <div class="wrapper" id="color-canvas-select">
         <div id="colorPicker"></div>
-        <div id="enter">enter</div>
+        <div>
+            <span id="inform" onclick="openInfo()"></span> - <span id="enter">enter</span>
+        </div>
     </div>
 
     <div id="canvas"></div>
 
-    <div id="counter" onclick="openInfo()"></div>
-    <div id="back" style="display: none;" onclick="closeInfo()">back to canvans</div>
+
+    <div id="back" style="display: none;" onclick="closeInfo()">/</div>
     <div id="info" style="display: none;">
-        <a href="https://aplaceweshare.com" target="_blank" rel="noopener">aplaceweshare.com</a> is an online
+        <a href="https://aplaceweshare.com" target="_self" rel="noopener">aplaceweshare.com</a> is an online
         installation by <a href="https://simonfreund.com" target="_blank" rel="noopener">Simon Freund</a>. Code by
         Marcello Curto <a href="https://roark.at/about/marcello-curto/" target="_blank" rel="noopener">Marcello
             Curto</a>

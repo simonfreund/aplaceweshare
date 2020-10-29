@@ -34,10 +34,6 @@ function renderCanvas(id, canvas) {
     }
 }
 
-function updateCounter(count) {
-    document.getElementById('counter').innerText = count
-}
-
 function addUserColor(id, color) {
     database.ref(id).set({
         color: color
@@ -58,8 +54,6 @@ function updateGrid() {
     const widthB = 100 / rootRouned
     const rootRounedUp = Math.ceil(rootOfBoxes)
     const widthA = 100 / rootRounedUp
-
-    updateCounter(colorBoxesCount)
 
     addStylesheetRules([
         ['.color-box',
