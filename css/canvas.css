@@ -47,15 +47,26 @@ a {
   right: 0;
 }
 
-#enter {
-  margin: 0;
+#navigation {
   padding: 20px;
+  margin: 0;
+}
+
+#enter {
   text-align: center;
   text-transform: uppercase;
   text-decoration: none;
   color: blue;
   cursor: pointer;
   user-select: none;
+}
+
+#inform {
+  color: blue;
+  cursor: pointer;
+  text-transform: uppercase;
+  user-select: none;
+  text-decoration: none;
 }
 
 #canvas {
@@ -70,11 +81,6 @@ a {
   height: 100%;
 }
 
-#inform {
-  color: blue;
-  cursor: pointer;
-  text-transform: uppercase;
-}
 
 #back {
   position: fixed;
