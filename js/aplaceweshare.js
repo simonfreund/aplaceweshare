@@ -89,12 +89,12 @@ function addStylesheetRules(rules) {
     }
 }
 
-function openInfo() {
-    document.getElementById('info').style.display = 'block'
-}
-
-function closeInfo() {
-    document.getElementById('info').style.display = 'none'
+function toggleInfo() {
+    if (document.getElementById('info').style.display == 'none') {
+        document.getElementById('info').style.display = 'block'
+    } else {
+        document.getElementById('info').style.display = 'none'
+    }
 }
 
 async function enterCanvas() {
@@ -118,5 +118,12 @@ async function enterToEnter(e) {
     if (e.key === 'Enter') {
         document.removeEventListener('keydown', enterToEnter)
         await enterCanvas()
+    }
+}
+
+document.addEventListener('keydown', iForInfo)
+async function iForInfo(e) {
+    if (e.code === 'KeyI') {
+        toggleInfo()
     }
 }
