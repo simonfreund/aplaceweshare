@@ -73,6 +73,7 @@ a {
 #inform {
   color: blue;
   cursor: pointer;
+  text-transform: uppercase;
 }
 
 #back {
