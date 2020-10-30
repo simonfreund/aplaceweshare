@@ -66,13 +66,13 @@ function updateGrid() {
 }
 
 function addStylesheetRules(rules) {
-    var styleEl = document.createElement('style');
+    let styleEl = document.createElement('style');
     document.head.appendChild(styleEl);
 
-    var styleSheet = styleEl.sheet;
+    let styleSheet = styleEl.sheet;
 
-    for (var i = 0; i < rules.length; i++) {
-        var j = 1,
+    for (let i = 0; i < rules.length; i++) {
+        let j = 1,
             rule = rules[i],
             selector = rule[0],
             propStr = '';
@@ -81,8 +81,8 @@ function addStylesheetRules(rules) {
             j = 0;
         }
 
-        for (var pl = rule.length; j < pl; j++) {
-            var prop = rule[j];
+        for (let pl = rule.length; j < pl; j++) {
+            let prop = rule[j];
             propStr += prop[0] + ': ' + prop[1] + (prop[2] ? ' !important' : '') + ';\n';
         }
         styleSheet.insertRule(selector + '{' + propStr + '}', styleSheet.cssRules.length);

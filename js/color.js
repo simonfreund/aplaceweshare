@@ -1,4 +1,13 @@
-function main(){let canvas=document.getElementById("color-canvas-select");function e(parent,text){var elem=document.createElement("div");elem.innerHTML=text,parent.appendChild(elem)}colorjoe.registerExtra("text",(function(p,joe,o){e(p,o.text?o.text:"text")})),colorjoe.rgb("colorPicker").on("change",(function(c){canvas.style.backgroundColor=c.css()})).update()}fixScale=function(doc){var addEvent="addEventListener",type="gesturestart",qsa="querySelectorAll",scales=[1,1],meta=qsa in doc?doc[qsa]("meta[name=viewport]"):[];function fix(){meta.content="width=device-width,minimum-scale="+scales[0]+",maximum-scale="+scales[1],doc.removeEventListener(type,fix,!0)}(meta=meta[meta.length-1])&&addEvent in doc&&(fix(),scales=[.25,1.6],doc[addEvent](type,fix,!0))},fixScale(document),
+const navigation = document.getElementById('navigation')
+function textColor(r, g, b) {
+    if ((r * 0.299 + g * 0.587 + b * 0.114) > 0.179) {
+        navigation.style.color =  'black'
+    } else { navigation.style.color = 'white' }
+};
+function main(){let canvas=document.getElementById("color-canvas-select");function e(parent,text){var elem=document.createElement("div");elem.innerHTML=text,parent.appendChild(elem)}colorjoe.registerExtra("text",(function(p,joe,o){e(p,o.text?o.text:"text")})),colorjoe.rgb("colorPicker").on("change",(function(c){
+	canvas.style.backgroundColor=c.css()
+	textColor(c.red(), c.green(), c.blue());
+})).update()}fixScale=function(doc){var addEvent="addEventListener",type="gesturestart",qsa="querySelectorAll",scales=[1,1],meta=qsa in doc?doc[qsa]("meta[name=viewport]"):[];function fix(){meta.content="width=device-width,minimum-scale="+scales[0]+",maximum-scale="+scales[1],doc.removeEventListener(type,fix,!0)}(meta=meta[meta.length-1])&&addEvent in doc&&(fix(),scales=[.25,1.6],doc[addEvent](type,fix,!0))},fixScale(document),
 /*! colorjoe - v4.1.1 - Juho Vepsalainen <bebraw@gmail.com> - MIT
 https://bebraw.github.com/colorjoe - 2020-01-27 */
 function(global,factory){"object"==typeof exports&&"undefined"!=typeof module?module.exports=factory():"function"==typeof define&&define.amd?define(factory):global.colorjoe=factory()}(this,(function(){"use strict";var commonjsGlobal="undefined"!=typeof window?window:"undefined"!=typeof global?global:"undefined"!=typeof self?self:{};function createCommonjsModule(fn,module){return fn(module={exports:{}},module.exports),module.exports}var dragjs_umd=createCommonjsModule((function(module,exports){var root,factory;root=commonjsGlobal,factory=function(){
