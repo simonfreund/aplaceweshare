@@ -23,9 +23,19 @@ body {
   background-position: 0 0, 5px 0, 5px 5px, 0 5px;
 }
 
-a {
+a,
+.link {
   color: blue;
   text-decoration: none;
+}
+
+a:hover,
+.link:hover {
+  color: white;
+}
+
+.link {
+  cursor: pointer;
 }
 
 #color-canvas-select {
