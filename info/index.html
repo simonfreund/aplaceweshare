@@ -19,10 +19,47 @@
         <a href="https://aplaceweshare.com" target="_self" rel="noopener">aplaceweshare.com</a> is a participatory
         online installation by <a href="https://simonfreund.com" target="_blank" rel="noopener">Simon Freund</a>. Select
         a colour of your choice and press ENTER to join a utopian place that is equally shared by everyone who is
-        present in that very moment. Code by <a href="https://roark.at/about/marcello-curto/" target="_blank"
-            rel="noopener">Marcello
+        present in that very moment.
+        <br><br>
+        Click <span id="checkout-button-plan_GMJljP9wSoLohD" role="link"> here</span> to become one of <span
+            id="subscriber-count"></span> patrons and support Simon Freund with 1€ per month.
+        <br><br>
+        Code by <a href="https://roark.at/about/marcello-curto/" target="_blank" rel="noopener">Marcello
             Curto</a>
     </div>
+
+    <script src="https://js.stripe.com/v3"></script>
+    <script>
+        (function () {
+            var stripe = Stripe('pk_live_jFOzi7qAbsEa5i00kGF6D7D4');
+            var checkoutButton = document.getElementById('checkout-button-plan_GMJljP9wSoLohD');
+            checkoutButton.addEventListener('click', function () {
+                stripe.redirectToCheckout({
+                    items: [{ plan: 'plan_GMJljP9wSoLohD', quantity: 1 }],
+                    successUrl: 'https://simonfreund.com/success',
+                    cancelUrl: 'https://simonfreund.com/canceled',
+                })
+                    .then(function (result) {
+                        if (result.error) {
+                            var displayError = document.getElementById('error-message');
+                            displayError.textContent = result.error.message;
+                        }
+                    });
+            });
+        })();
+    </script>
+    <script type="text/javascript" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=">
+        let counterEl = document.getElementById('subscriber-count');
+        fetch('https://sf-counter.woo.cat/')
+            .then((resp) => resp.json())
+            .then(function (data) {
+                counterEl.innerHTML = data.count
+            })
+            .catch(function () {
+                let counterEl = document.getElementById('subscriber-count');
+                counterEl.innerHTML = ''
+            });
+    </script>
 </body>
 
 </html>
