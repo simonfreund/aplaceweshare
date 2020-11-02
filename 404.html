@@ -16,13 +16,43 @@
 
 <body>
     <div id="info">
-        <a href="https://aplaceweshare.com" target="_self" rel="noopener">aplaceweshare.com</a> is a participatory
-        online installation by <a href="https://simonfreund.com" target="_blank" rel="noopener">Simon Freund</a>. Select
-        a colour of your choice and press ENTER to join a utopian place that is equally shared by everyone who is
-        present in that very moment. Code by <a href="https://roark.at/about/marcello-curto/" target="_blank"
-            rel="noopener">Marcello
-            Curto</a>
+        <div style="margin-bottom: 40px;">
+            <a href="https://aplaceweshare.com" target="_self" rel="noopener">aplaceweshare.com</a> is a participatory
+            online installation by <a href="https://simonfreund.com" target="_blank" rel="noopener">Simon Freund</a>.
+            Select
+            a colour of your choice and press ENTER to join a utopian place that is equally shared by everyone who is
+            present in that very moment.
+        </div>
+        <div style="margin-bottom: 40px;">
+            Become a patron and <span id="checkout-button-plan_GMJljP9wSoLohD" class="link">support</span> Simon Freund
+            with 1€ per month.
+        </div>
+        <div style="margin-bottom: 40px;">
+            Code by <a href="https://roark.at/about/marcello-curto/" target="_blank" rel="noopener">Marcello
+                Curto</a>
+        </div>
     </div>
+
+    <script src="https://js.stripe.com/v3"></script>
+    <script>
+        (function () {
+            var stripe = Stripe('pk_live_jFOzi7qAbsEa5i00kGF6D7D4');
+            var checkoutButton = document.getElementById('checkout-button-plan_GMJljP9wSoLohD');
+            checkoutButton.addEventListener('click', function () {
+                stripe.redirectToCheckout({
+                    items: [{ plan: 'plan_GMJljP9wSoLohD', quantity: 1 }],
+                    successUrl: 'https://simonfreund.com/success',
+                    cancelUrl: 'https://simonfreund.com/canceled',
+                })
+                    .then(function (result) {
+                        if (result.error) {
+                            var displayError = document.getElementById('error-message');
+                            displayError.textContent = result.error.message;
+                        }
+                    });
+            });
+        })();
+    </script>
 </body>
 
 </html>

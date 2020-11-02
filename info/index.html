@@ -24,8 +24,8 @@
             present in that very moment.
         </div>
         <div style="margin-bottom: 40px;">
-            Click <span id="checkout-button-plan_GMJljP9wSoLohD" class="link"> here</span> to become one of <span
-                id="subscriber-count">...</span> patrons and support Simon Freund with 1€ per month.
+            Become a patron and <span id="checkout-button-plan_GMJljP9wSoLohD" class="link">support</span> Simon Freund
+            with 1€ per month.
         </div>
         <div style="margin-bottom: 40px;">
             Code by <a href="https://roark.at/about/marcello-curto/" target="_blank" rel="noopener">Marcello
@@ -52,18 +52,6 @@
                     });
             });
         })();
-    </script>
-    <script type="text/javascript" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=">
-        let counterEl = document.getElementById('subscriber-count');
-        fetch('https://sf-counter.woo.cat/')
-            .then((resp) => resp.json())
-            .then(function (data) {
-                counterEl.innerHTML = data.count
-            })
-            .catch(function () {
-                let counterEl = document.getElementById('subscriber-count');
-                counterEl.innerHTML = ''
-            });
     </script>
 </body>
 
