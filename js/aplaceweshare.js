@@ -24,7 +24,6 @@ function renderCanvas(id, canvas) {
 
     database.ref().on('child_removed', function (snapshot) {
         const elementToRemove = document.getElementById(snapshot.key)
-        console.log(elementToRemove);
         elementToRemove.remove()
         updateGrid()
     })
