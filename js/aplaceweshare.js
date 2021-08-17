@@ -121,9 +121,17 @@ async function enterToEnter(e) {
     }
 }
 
-document.addEventListener('keydown', iForInfo)
-async function iForInfo(e) {
-    if (e.code === 'KeyI') {
-        toggleInfo()
+document.addEventListener('keydown', toggleInfoOnKeypress)
+async function toggleInfoOnKeypress(e) {
+    if (e.code === 'KeyI') toggleInfo()
+}
+
+const urlParams = new URLSearchParams(window.location.search);
+const urlColorQuery = urlParams.get('color');
+if (urlColorQuery && urlColorQuery !== '') {
+    const rgbValues = urlColorQuery.split(',');
+    if (rgbValues.length === 3) {
+            document.getElementById('color-canvas-select').style.backgroundColor = `rgb(${rgbValues[0]},${rgbValues[1]},${rgbValues[2]})`;
+            enterCanvas();
     }
 }
