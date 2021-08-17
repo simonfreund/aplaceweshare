@@ -133,5 +133,6 @@ if (urlColorQuery && urlColorQuery !== '') {
     if (rgbValues.length === 3) {
             document.getElementById('color-canvas-select').style.backgroundColor = `rgb(${rgbValues[0]},${rgbValues[1]},${rgbValues[2]})`;
             enterCanvas();
+            window.history.pushState({}, '', window.location.pathname);
     }
 }
